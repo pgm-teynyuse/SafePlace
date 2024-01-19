@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('forums', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('description');
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->integer('max_participants');
-            $table->integer('min_participants');
-            $table->string('location');
-            $table->string('image_url')->nullable();
-            $table->string('image')->nullable();
+            $table->string('body');
+            $table->string('image_url');
             $table->foreignId('user_id');
+            $table->foreignId('category_id');
+            $table->foreignId('reply_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('forums');
     }
 };

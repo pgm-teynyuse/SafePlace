@@ -9,24 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
     public function up(): void
     {
-        Schema::create('blogs', function (Blueprint $table) {
+        Schema::create('form_replies', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->longText('body');
+            $table->string('body');
+            $table->foreignId('form_id');
             $table->foreignId('user_id');
-            $table->string('image')->nullable();
-            $table->string('image_url')->nullable();
             $table->timestamps();
         });
     }
 
-    
-
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
-        Schema::dropIfExists('blogs');
+        Schema::dropIfExists('form_replies');
     }
 };

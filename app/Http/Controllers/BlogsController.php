@@ -19,6 +19,7 @@ class BlogsController extends Controller
         ]);
     }
 
+
     public function detail($id) {
         $blog = Blog::find($id);
 
@@ -42,7 +43,9 @@ class BlogsController extends Controller
     public function store(Request $request) {
         $request->validate([
             'title' => 'required|min:3|max:255',
-            'body' => 'required|min:3|max:255',
+            'body' => 'required|min:3|',
+            'image_url' => 'required|min:3|'
+
         ]);
 
         $user_id = Auth::id();
@@ -50,6 +53,7 @@ class BlogsController extends Controller
         $blog = new Blog();
         $blog->title = $request->input('title');
         $blog->body = $request->input('body');
+        $blog->image_url = $request->input('image_url');
         $blog->user_id = $user_id;
         $blog->save();
 
@@ -71,8 +75,10 @@ class BlogsController extends Controller
 
     public function update(Request $request, $id) {
         $request->validate([
-            'title' => 'required|min:3|max:255',
-            'body' => 'required|min:3|max:255',
+            'title' => '|min:3|max:255',
+            'body' => '|min:3|',
+            'image_url' => '|min:3|'
+
         ]);
 
         $blog = Blog::findOrFail($id);
@@ -84,6 +90,7 @@ class BlogsController extends Controller
 
         $blog->title = $request->input('title');
         $blog->body = $request->input('body');
+        $blog->image_url = $request->input('image_url');
         $blog->save();
 
         return redirect('/blogs?success=blog-updated');

@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <!-- Flex container -->
+        <div class="flex items-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            <!-- Dashboard titel -->
+            <div class="flex-1">{{ __('Dashboard') }}</div>
+
+            <!-- Dashboard navigatie -->
+            <div class="flex-1 ml-4">@include('layouts.dashboard-navigation')</div>
+        </div>
     </x-slot>
 
     <div class="py-12">

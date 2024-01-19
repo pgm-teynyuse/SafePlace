@@ -1,15 +1,12 @@
-
-
-
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Update blog
+            Bewerk blog
         </h2>
     </x-slot>
 
     <div id="blogs" class=" max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8  grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-    <form action="/blogs/{{ $blog->id }}" method="POST">
+    <form method="POST">
         @csrf
         @method('PATCH')
             <div class="mb-4">
