@@ -12,7 +12,7 @@ export default {
     theme: {
         colors: {
             main: "#d9f99d",
-            black: "#000000",
+            black: "#27272a",
             red: "#dc2626",
             redLight: "#f87171",
             redDark: "#991b1b",
@@ -23,6 +23,7 @@ export default {
             buttonSecond: "#eab308",
             buttonSecondLight: "#ffedd5",
             gray: "#737373",
+            lightGray: "#f3f4f6",
         },
         extend: {
             fontFamily: {

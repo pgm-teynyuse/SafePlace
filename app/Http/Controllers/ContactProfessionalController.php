@@ -8,6 +8,24 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactProfessionalController extends Controller
 {
+    public function index()
+    {
+        $queryBuilder = Contact::query()->orderBy('created_at' , 'desc' );
+        return view('mails', ['contacts' => $queryBuilder->paginate(10)]);
+    }
+
+    public function detail($id)
+    {
+        $contact = Contact::find($id);
+        
+        if(! isset($contact->id) ) {
+
+            return redirect('/contacts?error=blog-not-found');
+        }
+
+        return view('contact.show', ['contact' => $contact]);
+    }
+
     public function create($professionalId)
     {
         return view('contact.create', ['professionalId' => $professionalId]);
@@ -38,5 +56,20 @@ class ContactProfessionalController extends Controller
         ]);
 
         return redirect('/professionals?success=contact-created');
+    }
+
+    public function sendReply(Request $request, $id)
+    {
+        $request->validate([
+            'message' => 'required|min:3',
+            'subject' => 'required|min:3',
+        ]);
+
+        $contact = Contact::find($id);
+
+        $contact->message = $request->input('reply');
+        $contact->save();
+
+        return redirect('/contacts?success=reply-sent');
     }
 }

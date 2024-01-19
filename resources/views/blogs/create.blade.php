@@ -19,6 +19,17 @@
                 @enderror
             </div>
             <div class="mb-4">
+                <label for="category_id" class="block text-sm font-medium text-gray-700">Categorie</label>
+                <select name="category_id" id="category_id" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('category_id') border-red-500 @enderror">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-4">
                 <label for="body" class="sr-only">Body</label>
                 <textarea name="body" id="body" cols="30" rows="4" placeholder="Body" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('body') border-red-500 @enderror">{{ old('body') }}</textarea>
 

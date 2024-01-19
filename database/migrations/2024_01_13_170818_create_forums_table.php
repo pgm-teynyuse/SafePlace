@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('body');
-            $table->string('image_url');
             $table->foreignId('user_id');
             $table->foreignId('category_id');
-            $table->foreignId('reply_id');
             $table->timestamps();
         });
     }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class ParticipantsController extends Controller
 {
     public function index(){
-        $queryBuilder = Participant::query()->orderBy('created_at');
+        $queryBuilder = Participant::query()->orderBy('created_at' , 'desc' );
 
         return view('dashboard.activities', ['participants' => $queryBuilder->paginate(10)]);
     }
@@ -64,4 +64,47 @@ class ParticipantsController extends Controller
 
     return redirect()->back()->with('success', 'You have successfully participated in the activity.');
 }
+
+    public function confirm($id){
+        $participant = Participant::find($id);
+
+        if(! isset($participant->id) ) {
+
+            return redirect('/dashboard/activities?error=participant-not-found');
+        }
+
+        $participant->confirmed = 1;
+        $participant->save();
+
+        return redirect('/dashboard/activities?success=participant-confirmed');
+    }
+
+    public function cancel($id){
+        $participant = Participant::find($id);
+
+        if(! isset($participant->id) ) {
+
+            return redirect('/dashboard/activities?error=participant-not-found');
+        }
+
+        $participant->confirmed = 0;
+        $participant->save();
+
+        return redirect('/dashboard/activities?success=participant-canceled');
+    }
+
+    public function delete($id) {
+        $participant = Participant::find($id);
+
+        if(! isset($participant->id) ) {
+
+            return redirect('/dashboard/activities?error=participant-not-found');
+        }
+
+        $participant->delete();
+
+        return redirect('/dashboard/activities?success=participant-deleted');
+    }
+
+
 }

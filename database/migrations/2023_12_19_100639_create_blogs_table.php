@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('image')->nullable();
             $table->string('image_url')->nullable();
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }

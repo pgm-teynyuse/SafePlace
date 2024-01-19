@@ -21,7 +21,7 @@
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-buttonLight shadow">
-                    <div class="flex justify-between max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                    <div class="flex  justify-between max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>
