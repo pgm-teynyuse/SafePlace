@@ -19,7 +19,8 @@
     <div id="activities" class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         @foreach($activities as $activity)
             <div class="bg-white hover:bg-gray-50 transition duration-300 ease-in-out border border-gray-200 rounded-lg overflow-hidden shadow-md">
-                <img src="{{ $activity->image_url }}" alt="{{ $activity->title }}" class="w-full h-56 object-cover">
+                <img src="{{ asset('storage/' . $activity->image) }}" alt="{{ $activity->title }}" class="w-full h-56 object-cover">
+
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-gray-800 mb-3">
                         <a href="/activity/{{ $activity->id }}" class="hover:underline">{{ $activity->title }}</a>

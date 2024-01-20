@@ -2,3 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.vertical-line {
+    position: absolute;
+    left: 50%; /* Pas dit aan om de lijn in het midden te positioneren */
+    top: 45%;
+    height: 30%;
+    bottom: 0;
+    width: 2px; /* Of de breedte die je wilt voor de lijn */
+    background-color: #ccc; /* Of de kleur die je wilt voor de lijn */
+    z-index: -1; /* Zorg dat de lijn achter de content staat */
+}
+

@@ -23,11 +23,19 @@ Route::post('/check-text', [BadWordsController::class, 'checkText']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard/activities', [ParticipantsController::class, 'index'])->middleware(['auth', 'verified'])->name('activities.dashboard');
+Route::get('/dashboard/forums', [ForumsController::class, 'myForums'])->middleware(['auth', 'verified'])->name('forums.dashboard');
+Route::get('/dashboard/forums/edit/{id}', [ForumsController::class, 'edit'])->name('dashboard.forums.edit');
+Route::put('/dashboard/forums/update/{id}', [ForumsController::class, 'update'])->name('update.dashboard');
+Route::delete('/dashboard/forums/delete/{id}', [ForumsController::class, 'delete'])->name('dashboard.forums.delete');
+
 
 Route::get('/mails', [ContactProfessionalController::class, 'index'])->middleware(['auth', 'verified'])->name('mails');
 Route::get('/mail/{id}', [ContactProfessionalController::class, 'detail']);
 
 /*Forums*/
+Route::get('/forums/category/{category_id}', [ForumsController::class, 'filterByCategory']);
+Route::get('/forums/search', [ForumsController::class, 'search'])->name('forums.search');
+
 
 Route::get('/forums', [ForumsController::class, 'index'])->name('forums');
 Route::get('/forum/{id}', [ForumsController::class, 'detail']);
@@ -39,9 +47,6 @@ Route::get('/forum/{id}/answer/{answer_id}/edit', [ForumsController::class, 'edi
 Route::patch('/forum/{id}/answer/{answer_id}/edit', [ForumsController::class, 'updateAnswer'])->middleware('auth');
 Route::delete('/forum/{id}/answer/{answer_id}', [ForumsController::class, 'deleteAnswer'])->middleware('auth');
 
-Route::get('/forum/{id}/edit', [ForumsController::class, 'edit'])->middleware('auth');
-Route::patch('/forum/{id}/edit', [ForumsController::class, 'update'])->middleware('auth');
-Route::delete('/forum/{id}', [ForumsController::class, 'delete'])->middleware('auth');
 
 Route::get('/forums/create', [ForumsController::class, 'create'])->middleware('auth');
 Route::post('/forums', [ForumsController::class, 'store'])->middleware('auth');
@@ -49,6 +54,8 @@ Route::post('/forums', [ForumsController::class, 'store'])->middleware('auth');
 
 /* Blogs */
 Route::get('/blogs/search', [BlogsController::class, 'search'])->name('blogs.search');
+Route::get('/blogs/category/{category_id}', [BlogsController::class, 'filterByCategory']);
+
 
 Route::get('/blogs', [BlogsController::class, 'index'])->name('blogs');
 Route::get('/blog/{id}', [BlogsController::class, 'detail']);

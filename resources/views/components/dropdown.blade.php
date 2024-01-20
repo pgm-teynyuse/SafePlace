@@ -21,15 +21,13 @@ switch ($width) {
 }
 @endphp
 
-<div class="flex relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
-@if (Auth::check() && Auth::user()->role_id == 1)    
+<div class="flex z-10 relative" x-data="{ open: false }" @click.outside="open = false" @close.stop="open = false">
     <div class="hidden sm:-my-px sm:flex ">
         <x-nav-link class="mr-5" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
         <i class="fas fa-border-none mr-2"></i>    
         {{ __('Dashboard') }}
         </x-nav-link>
     </div>   
-@endif
     <div class="hidden sm:-my-px sm:flex ">
         <x-nav-link class="mr-5" :href="route('mails')" :active="request()->routeIs('mails')">
         <i class="fas fa-inbox mr-2"></i>  

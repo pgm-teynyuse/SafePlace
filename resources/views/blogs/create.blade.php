@@ -1,26 +1,35 @@
-
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Create blog
+        <div class=" flex flex-col ">
+        <h2 class="font-semibold mb-4 text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            Maak een blog
         </h2>
+    <div class=" dark:text-white">
+        <p>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Laten we samenwerken om een vriendelijke en respectvolle gemeenschap te behouden. Wees voorzichtig met je woorden en zorg ervoor dat we anderen niet onbedoeld kwetsen. Samen kunnen we een positieve online omgeving creëren waar iedereen zich welkom voelt. Dank je wel!</p>
+    </div> 
+        </div>
+
     </x-slot>
 
-    <div id="blogs" class=" max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8  grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        <form action="{{ route('blogs') }}" method="POST">
+    <div id="blogs" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+
+
+        <form action="{{ route('blogs') }}" method="POST" enctype="multipart/form-data"> 
             @csrf
             <div class="mb-4">
-                <label for="title" class="sr-only">Title</label>
-                <input type="text" name="title" id="title" placeholder="Title" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('title') border-red-500 @enderror" value="{{ old('title') }}">
+                <label for="title" class="dark:text-white">Titel</label>
+                <input type="text" name="title" id="title" placeholder="Title" class="dark:bg-gray border-2 w-full p-4 rounded-lg @error('title') border-red-500 @enderror" value="{{ old('title') }}">
                 @error('title')
                 <div class="text-red-500 mt-2 text-sm">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
-            <div class="mb-4">
-                <label for="category_id" class="block text-sm font-medium text-gray-700">Categorie</label>
-                <select name="category_id" id="category_id" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('category_id') border-red-500 @enderror">
+            <div class="mb-4 md:col-span-2">
+                <label for="category_id" class="dark:text-white">Categorie</label>
+                <select name="category_id" id="category_id" class="dark:bg-gray border-2 w-full p-4 rounded-lg @error('category_id') border-red-500 @enderror">
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -30,8 +39,8 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="body" class="sr-only">Body</label>
-                <textarea name="body" id="body" cols="30" rows="4" placeholder="Body" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('body') border-red-500 @enderror">{{ old('body') }}</textarea>
+                <label for="body" class="dark:text-white">Jouw tekst</label>
+                <textarea name="body" id="body" cols="30" rows="4" placeholder="Body" class="dark:bg-gray border-2 w-full p-4 rounded-lg @error('body') border-red-500 @enderror">{{ old('body') }}</textarea>
 
                 @error('body')
                 <div class="text-red-500 mt-2 text-sm">
@@ -40,23 +49,17 @@
                 @enderror
             </div>
             <div class="mb-4">
-                <label for="image_url" class="sr-only">Image_url</label>
-                <input type="text" name="image_url" id="image_url" cols="30" rows="4" placeholder="Image Url" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('body') border-red-500 @enderror">{{ old('image_url') }}</input>
-
-                @error('image_url')
+                <label for="image" class="dark:text-white">Selecteer een afbeelding</label>
+                <input type="file" name="image" id="image" class="dark:bg-gray border-2 w-full p-4 rounded-lg @error('image') border-red-500 @enderror">
+                @error('image')
                 <div class="text-red-500 mt-2 text-sm">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
-            <div>
-                <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Create</button>
+            <div class="md:col-span-2">
+                <button type="submit" class="inline-block transform hover:bg-buttonSecondLight bg-buttonSecond text-purple-600 rounded px-4 py-2 hover:bg-purple-200 transition duration-300 w-full">Publiceer</button>
             </div>
         </form>
     </div>
 </x-app-layout>
-
-
-
-
-

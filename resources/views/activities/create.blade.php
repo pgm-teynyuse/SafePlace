@@ -6,7 +6,8 @@
     </x-slot>
 
     <div id="activities" class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <form action="{{ route('activities') }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form action="{{ route('activities') }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-4" enctype="multipart/form-data">
+
             @csrf
             <!-- Title -->
             <div class="mb-4">
@@ -27,11 +28,13 @@
             </div>
 
             <!-- Image URL -->
-            <div class="mb-4">
-                <label for="image_url" class="block text-sm font-medium text-gray-700">Afbeelding URL</label>
-                <input type="text" name="image_url" id="image_url" placeholder="Afbeelding URL" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('image_url') border-red-500 @enderror" value="{{ old('image_url') }}">
-                @error('image_url')
-                <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+            <div class="mb-4 ">
+                <label for="image" class="sr-only">Image</label>
+                <input type="file" name="image" id="image" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('image') border-red-500 @enderror">
+                @error('image')
+                <div class="text-red-500 mt-2 text-sm">
+                    {{ $message }}
+                </div>
                 @enderror
             </div>
 

@@ -43,12 +43,13 @@ class ActivitiesController extends Controller
         $request->validate([
             'title' => 'required|min:3|max:255',
             'description' => 'required|min:3|',
-            'image_url' => 'required|min:3|',
+            'image_url' => 'nullable|min:3|',
             'start_date' => 'required|min:3|',
             'end_date' => 'required|min:3|',
             'max_participants' => 'required|',
             'min_participants' => 'required|',
             'location' => 'required|min:3|',
+            'image' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048',
 
         ]);
 
@@ -64,6 +65,14 @@ class ActivitiesController extends Controller
         $activity->min_participants = $request->input('min_participants');
         $activity->location = $request->input('location');
         $activity->user_id = $user_id;
+
+if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imageName = time() . '_' . $image->getClientOriginalName();
+    $image->storeAs('uploads', $imageName, 'public');
+    $activity->image = 'uploads/' . $imageName;
+}
+
         $activity->save();
 
         return redirect('/activities?success=activity-created');
@@ -86,7 +95,6 @@ class ActivitiesController extends Controller
         $request->validate([
             'title' => '|min:3|max:255',
             'description' => '|min:3|',
-            'image_url' => '|min:3|',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
             'max_participants' => '|max:20|',

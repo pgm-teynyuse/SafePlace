@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="  bg-white  dark:bg-main">
+<nav x-data="{ open: false }" class="  bg-main dark:bg-dark">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -45,7 +45,7 @@
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="52" >
                     <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-black dark:text-black bg-primary dark:bg-buttonLight hover:text-primary dark:hover:text-darkGreen focus:outline-none transition ease-in-out duration-150">       
+                        <button class="inline-flex items-center px-3 py-2 border-transparent text-sm leading-4 font-medium rounded-md text-black dark:text-black bg-primary dark:bg-buttonLight hover:text-main dark:hover:text-darkGreen focus:outline-none transition ease-in-out duration-150">       
                         <i class="fa-regular fa-user mr-2"></i>
                         <div>{{ Auth::user()->username }}</div>
                             <div class="ms-1">
@@ -106,7 +106,32 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-        </div>
+        </div>     
+        <div class="pt-2 pb-3 space-y-1">
+            <x-nav-link :href="route('forums')" :active="request()->routeIs('forums')">
+                        {{ __('Forums') }}
+            </x-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-nav-link :href="route('blogs')" :active="request()->routeIs('blogs')">
+                        {{ __('Blogs') }}
+                    </x-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-nav-link :href="route('activities')" :active="request()->routeIs('activities')">
+                        {{ __('Activiteiten') }}
+                    </x-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-nav-link :href="route('professionals')" :active="request()->routeIs('professionals')">
+                        {{ __('Professionals') }}
+                    </x-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-nav-link :href="route('questions')" :active="request()->routeIs('questions')">
+                        {{ __('FAQ') }}
+                    </x-nav-link>
+                </div>
         @if (Auth::check())
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">

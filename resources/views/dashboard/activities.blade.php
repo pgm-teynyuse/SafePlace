@@ -1,14 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex items-center font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <div class="flex-1">{{ __('Dashboard') }}</div>
+            <div class="flex-1">{{ __('Deelnameverzoeken') }}</div>
             <div class="flex-1 ml-4">@include('layouts.dashboard-navigation')</div>
         </div>
     </x-slot>
 
 <div class="py-12">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <h3 class="text-2xl font-semibold mb-2">Deelnameverzoeken voor Activiteiten</h3>
         <div class="bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg p-6">
             @foreach($participants as $participant)
                 @if($participant->activity->user_id == auth()->user()->id)

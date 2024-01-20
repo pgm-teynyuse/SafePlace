@@ -28,15 +28,6 @@
                 @enderror
             </div>
 
-            <!-- Image URL -->
-            <div class="mb-4">
-                <label for="image_url" class="block text-sm font-medium text-gray-700">Afbeelding URL</label>
-                <input type="text" name="image_url" id="image_url" placeholder="Image URL" class="bg-gray-100 border-2 w-full p-4 rounded-lg @error('image_url') border-red-500 @enderror" value="{{ $activity->image_url }}">
-                @error('image_url')
-                <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-                @enderror
-            </div>
-
             <!-- Start Date -->
             <div class="mb-4">
                 <label for="start_date" class="block text-sm font-medium text-gray-700">Begin Datum</label>
